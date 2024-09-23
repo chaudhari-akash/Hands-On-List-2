@@ -1,0 +1,35 @@
+/*
+============================================================================
+Name : 19c.c
+Author : Akash Chaudhari
+Description : Create a FIFO file by
+                a. mknod command
+                b. mkfifo command
+                c. use strace command to find out, which command (mknod or mkfifo) is better.
+                c. mknod system call
+                d. mkfifo library function
+Date: 20th Sep, 2024.
+============================================================================
+*/
+
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+int main(int argc, char *argv[])
+{
+    mknod(argv[1], S_IFIFO | 0744, 0);
+
+    return 0;
+}
+
+/*
+============================================================================
+akash@akash-Inspiron-16-5630:~/Hands On List/Hands On List 2$ cc 19c.c -o 19c
+akash@akash-Inspiron-16-5630:~/Hands On List/Hands On List 2$ ./19c pipe1
+akash@akash-Inspiron-16-5630:~/Hands On List/Hands On List 2$ ls -l | grep ^p
+prwxr--r-- 1 akash akash     0 Sep 21 16:31 pipe1
+============================================================================
+*/
